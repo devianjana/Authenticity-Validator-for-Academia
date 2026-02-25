@@ -1,0 +1,25 @@
+//ai-ocr/requirements.txt
+fastapi
+uvicorn
+pytesseract
+opencv-python
+python-multipart
+
+//ai-ocr/main.py
+from fastapi import FastAPI, UploadFile, File
+import pytesseract
+import cv2
+import numpy as np
+
+app = FastAPI()
+
+@app.post("/extract")
+async def extract_text(file: UploadFile = File(...)):
+    contents = await file.read()
+    np_arr = np.frombuffer(contents, np.uint8)
+    img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+
+    text = pytesseract.image_to_string(img)
+
+    return {"extracted_text": text}
+
