@@ -1,0 +1,42 @@
+//frontend/package.json
+{
+  "name": "authenticity-validator-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
+  },
+  "scripts": {
+    "start": "react-scripts start"
+  }
+}
+
+//frontend/src/App.js
+import React from "react";
+import axios from "axios";
+
+function App() {
+
+  const verifyCertificate = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/certificate/verify", {
+        certificateId: "CERT123"
+      });
+      alert("Status: " + res.data.status);
+    } catch (err) {
+      alert("Something went wrong. Couldn't verify the certificate.");
+    }
+  };
+
+  return (
+    <div style={{ padding: "50px" }}>
+      <h1>Authenticity Validator</h1>
+      <button onClick={verifyCertificate}>Verify Certificate</button>
+    </div>
+  );
+}
+
+export default App;
