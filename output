@@ -1,0 +1,10 @@
+{
+  "_id": "65fd1234abcd5678",
+  "name": "Devi",
+  "email": "devi@gmail.com",
+  "password": "$2a$10$hashedpassword...",
+  "role": "Institution",
+  "createdAt": "2026-03-01T10:00:00.000Z",
+  "updatedAt": "2026-03-01T10:00:00.000Z",
+  "__v": 0
+}
